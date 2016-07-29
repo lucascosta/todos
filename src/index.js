@@ -1,12 +1,14 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import { combineReducers } from 'redux';
 import { createStore } from 'redux';
-import todoApp from './reducers';
-import App from './components/App';
+import { Provider } from 'react-redux';
 
-const store = createStore(todoApp);
+import App, { reducers as appReducers } from './containers/App';
+
+const reducer = combineReducers({...appReducers})
+const store = createStore(reducer);
 
 render(
   <Provider store={store}>
